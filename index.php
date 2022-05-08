@@ -4,7 +4,7 @@ include("Model.php");
 include("UserModel.php");
 
 $db = new Db();
-$connection = $db->getConnection("localhost","3306","mdb", "root", "");
+$connection = $db->getConnection("localhost","mdb","root", "root", "8889");
 
 $user = new UserModel();
 print_r($user->all($connection));

@@ -1,6 +1,6 @@
 <?php
 
-class Model
+abstract class Model
 {
     public string $table;
     public array $fields;
@@ -27,8 +27,8 @@ class Model
     }
 
     public function store(PDO $connection) {
-        $query = "insert into ".$this->table." (".implode(", ", $this->fields).")"
-            ." values (:".implode(", :", $this->fields).")";
+        $query = "insert into ".$this->table." (".implode(", ", $this->fields).", created_at)"
+            ." values (:".implode(", :", $this->fields).", '".date('Y-m-h h:m:i')."')";
         $stmt = $connection->prepare($query);
         foreach($this->fields as $field) {
             if(isset($_POST[$field])) {
